@@ -1,0 +1,4 @@
+tls:
+  certificates:
+    # first certificate
+    - certFile: ./certs/pf.pem

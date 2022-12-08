@@ -4,6 +4,13 @@
 cp -r storage.skel/* storage/
 chown -R www-data:www-data storage/ bootstrap/
 
+if [ ! -f .migratedone ]; then
+    php artisan migrate --force
+    php artisan import:cities
+    php artisan key:generate
+    touch .migratedone
+fi
+
 # Refresh the environment
 php artisan storage:link
 php artisan horizon:publish
